@@ -5,8 +5,9 @@ import es.ulpgc.eite.cleancode.quiz.question.QuestionViewModel;
 
 public class LoadCurrentQuestion implements AppCommand {
 
-  private final QuestionViewModel viewModel;
+  private QuestionViewModel viewModel;
   private final String question;
+
 
   public LoadCurrentQuestion(
       QuestionViewModel viewModel, String question) {

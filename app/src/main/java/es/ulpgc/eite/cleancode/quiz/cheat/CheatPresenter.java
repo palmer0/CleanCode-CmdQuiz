@@ -4,6 +4,7 @@ import android.util.Log;
 
 import java.lang.ref.WeakReference;
 
+import es.ulpgc.eite.cleancode.quiz.app.AppCommand;
 import es.ulpgc.eite.cleancode.quiz.app.CheatToQuestionState;
 import es.ulpgc.eite.cleancode.quiz.app.QuestionToCheatState;
 import es.ulpgc.eite.cleancode.quiz.cheat.commands.LoadCurrentAnswer;
@@ -48,13 +49,13 @@ public class CheatPresenter implements CheatContract.Presenter {
   public void yesButtonClicked() {
 
     // set passed state
-    QuestionToCheatState fromQuestionState = router.getDataFromQuestionScreen();
-    if(fromQuestionState != null) {
+    QuestionToCheatState stateFromQuestion = router.getDataFromQuestionScreen();
+    if(stateFromQuestion != null) {
 
       CheatToQuestionState toQuestionState = new CheatToQuestionState(true);
       router.passDataToQuestionScreen(toQuestionState);
 
-      loadCurrentAnswer(fromQuestionState.answer);
+      loadCurrentAnswer(stateFromQuestion.answer);
       view.get().displayCheatData(viewModel);
     }
   }
@@ -69,16 +70,19 @@ public class CheatPresenter implements CheatContract.Presenter {
       reply = view.get().getFalseLabel();
     }
 
-    new LoadCurrentAnswer(viewModel, reply);
+    execute(new LoadCurrentAnswer(viewModel, reply));
 
   }
 
   @Override
   public void noButtonClicked() {
-    CheatToQuestionState newState = new CheatToQuestionState(false);
-    router.passDataToQuestionScreen(newState);
+    CheatToQuestionState stateToCheat = new CheatToQuestionState(false);
+    router.passDataToQuestionScreen(stateToCheat);
     view.get().finishView();
   }
 
+  private void execute(AppCommand command) {
+    command.execute();
+  }
 
 }

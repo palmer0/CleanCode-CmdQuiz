@@ -5,7 +5,7 @@ import es.ulpgc.eite.cleancode.quiz.question.QuestionViewModel;
 
 public class CheckCurrentQuestion implements AppCommand {
 
-  private final QuestionViewModel viewModel;
+  private QuestionViewModel viewModel;
   private final String result;
   private final boolean enable;
 

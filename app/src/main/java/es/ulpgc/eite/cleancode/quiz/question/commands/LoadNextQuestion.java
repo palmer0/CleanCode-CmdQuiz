@@ -7,8 +7,8 @@ import es.ulpgc.eite.cleancode.quiz.question.QuestionViewModel;
 public class LoadNextQuestion implements AppCommand {
 
 
-  private final QuestionState state;
-  private final QuestionViewModel viewModel;
+  private QuestionState state;
+  private QuestionViewModel viewModel;
   private final String question;
 
   public LoadNextQuestion(QuestionState state, String question) {

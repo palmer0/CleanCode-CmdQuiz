@@ -2,6 +2,7 @@ package es.ulpgc.eite.cleancode.quiz.question;
 
 import java.lang.ref.WeakReference;
 
+import es.ulpgc.eite.cleancode.quiz.app.AppCommand;
 import es.ulpgc.eite.cleancode.quiz.app.CheatToQuestionState;
 import es.ulpgc.eite.cleancode.quiz.app.QuestionToCheatState;
 import es.ulpgc.eite.cleancode.quiz.question.commands.CheckCurrentQuestion;
@@ -62,8 +63,7 @@ public class QuestionPresenter implements QuestionContract.Presenter {
   private void loadCurrentQuestion() {
 
     model.setCurrentIndex(state.quizIndex);
-    viewModel.questionText = model.getCurrentQuestion();
-    new LoadCurrentQuestion(viewModel, model.getCurrentQuestion());
+    execute(new LoadCurrentQuestion(viewModel, model.getCurrentQuestion()));
   }
 
 
@@ -91,7 +91,7 @@ public class QuestionPresenter implements QuestionContract.Presenter {
       enable = false;
     }
 
-    new CheckCurrentQuestion(viewModel, result, enable);
+    execute(new CheckCurrentQuestion(viewModel, result, enable));
 
   }
 
@@ -108,8 +108,8 @@ public class QuestionPresenter implements QuestionContract.Presenter {
   @Override
   public void cheatButtonClicked() {
     boolean answer = model.getCurrentAnswer();
-    QuestionToCheatState toCheatState = new QuestionToCheatState(answer);
-    router.passDataToCheatScreen(toCheatState);
+    QuestionToCheatState stateToCheat = new QuestionToCheatState(answer);
+    router.passDataToCheatScreen(stateToCheat);
     router.navigateToCheatScreen();
   }
 
@@ -125,8 +125,12 @@ public class QuestionPresenter implements QuestionContract.Presenter {
 
   private void loadNextQuestion() {
     model.incrQuizIndex();
-    new LoadNextQuestion(state, model.getCurrentQuestion());
+    execute(new LoadNextQuestion(state, model.getCurrentQuestion()));
+
   }
 
+  private void execute(AppCommand command) {
+    command.execute();
+  }
 
 }
