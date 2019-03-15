@@ -54,17 +54,6 @@ public class CheatPresenter implements CheatContract.Presenter {
       CheatToQuestionState toQuestionState = new CheatToQuestionState(true);
       router.passDataToQuestionScreen(toQuestionState);
 
-      /*
-      if(fromQuestionState.answer) {
-        viewModel.answerText = view.get().getTrueLabel();
-      } else {
-        viewModel.answerText = view.get().getFalseLabel();
-      }
-
-      viewModel.yesButton = false;
-      viewModel.noButton = false;
-      */
-
       loadCurrentAnswer(fromQuestionState.answer);
       view.get().displayCheatData(viewModel);
     }

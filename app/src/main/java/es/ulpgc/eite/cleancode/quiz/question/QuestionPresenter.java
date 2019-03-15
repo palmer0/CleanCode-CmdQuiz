@@ -79,14 +79,6 @@ public class QuestionPresenter implements QuestionContract.Presenter {
 
     String result;
 
-    /*
-    if(currentAnswer == userAnswer) {
-      result = view.get().getCorrectLabel();
-    } else {
-      result = view.get().getIncorrectLabel();
-    }
-    */
-
     if(currentAnswer == userAnswer) {
       result = model.getCorrectLabel();
     } else {
@@ -101,41 +93,7 @@ public class QuestionPresenter implements QuestionContract.Presenter {
 
     new CheckCurrentQuestion(viewModel, result, enable);
 
-    /*
-    viewModel.falseButton = false;
-    viewModel.trueButton = false;
-    viewModel.cheatButton = false;
-    */
-
   }
-
-//  private void checkCurrentQuestion(boolean userAnswer) {
-//    boolean currentAnswer = model.getCurrentAnswer();
-//
-//    /*
-//    if(currentAnswer == userAnswer) {
-//      viewModel.resultText = view.get().getCorrectLabel();
-//    } else {
-//      viewModel.resultText = view.get().getIncorrectLabel();
-//    }
-//    */
-//
-//    if(currentAnswer == userAnswer) {
-//      viewModel.resultText = model.getCorrectLabel();
-//    } else {
-//      viewModel.resultText = model.getIncorrectLabel();
-//    }
-//
-//    viewModel.falseButton = false;
-//    viewModel.trueButton = false;
-//    viewModel.cheatButton = false;
-//
-//    if(model.isLastQuestion()) {
-//      viewModel.nextButton = false;
-//    } else {
-//      viewModel.nextButton = true;
-//    }
-//  }
 
   @Override
   public void trueButtonClicked() {
@@ -167,20 +125,7 @@ public class QuestionPresenter implements QuestionContract.Presenter {
 
   private void loadNextQuestion() {
     model.incrQuizIndex();
-
     new LoadNextQuestion(state, model.getCurrentQuestion());
-
-    /*
-    state.quizIndex++;
-
-    viewModel.questionText = model.getCurrentQuestion();
-    viewModel.resultText = "";
-
-    viewModel.falseButton = true;
-    viewModel.trueButton = true;
-    viewModel.cheatButton = true;
-    viewModel.nextButton = false;
-    */
   }
 
 
