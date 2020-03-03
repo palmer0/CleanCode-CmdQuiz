@@ -15,11 +15,11 @@ public class CheatPresenter implements CheatContract.Presenter {
   public static String TAG = CheatPresenter.class.getSimpleName();
 
   private WeakReference<CheatContract.View> view;
-  private CheatViewModel viewModel;
+  private CheatState state;
   private CheatContract.Router router;
 
   public CheatPresenter(CheatState state) {
-    this.viewModel = state;
+    this.state = state;
   }
 
   @Override
@@ -41,7 +41,7 @@ public class CheatPresenter implements CheatContract.Presenter {
   public void fetchCheatData() {
     Log.e(TAG, "fetchCheatData()");
 
-    view.get().displayCheatData(viewModel);
+    view.get().displayCheatData(state);
 
   }
 
@@ -56,7 +56,7 @@ public class CheatPresenter implements CheatContract.Presenter {
       router.passDataToQuestionScreen(toQuestionState);
 
       loadCurrentAnswer(stateFromQuestion.answer);
-      view.get().displayCheatData(viewModel);
+      view.get().displayCheatData(state);
     }
   }
 
@@ -70,7 +70,7 @@ public class CheatPresenter implements CheatContract.Presenter {
       reply = view.get().getFalseLabel();
     }
 
-    execute(new LoadCurrentAnswer(viewModel, reply));
+    execute(new LoadCurrentAnswer(state, reply));
 
   }
 

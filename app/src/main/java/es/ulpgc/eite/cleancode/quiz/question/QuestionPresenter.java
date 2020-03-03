@@ -15,14 +15,12 @@ public class QuestionPresenter implements QuestionContract.Presenter {
   public static String TAG = QuestionPresenter.class.getSimpleName();
 
   private WeakReference<QuestionContract.View> view;
-  private QuestionViewModel viewModel;
   private QuestionState state;
   private QuestionContract.Model model;
   private QuestionContract.Router router;
 
   public QuestionPresenter(QuestionState state) {
     this.state = state;
-    viewModel = state;
   }
 
   @Override
@@ -55,7 +53,7 @@ public class QuestionPresenter implements QuestionContract.Presenter {
     }
 
     loadCurrentQuestion();
-    view.get().displayQuestionData(viewModel);
+    view.get().displayQuestionData(state);
 
   }
 
@@ -63,7 +61,7 @@ public class QuestionPresenter implements QuestionContract.Presenter {
   private void loadCurrentQuestion() {
 
     model.setCurrentIndex(state.quizIndex);
-    execute(new LoadCurrentQuestion(viewModel, model.getCurrentQuestion()));
+    execute(new LoadCurrentQuestion(state, model.getCurrentQuestion()));
   }
 
 
@@ -71,7 +69,7 @@ public class QuestionPresenter implements QuestionContract.Presenter {
   private void updateQuestionData(boolean userAnswer) {
 
     checkCurrentQuestion(userAnswer);
-    view.get().displayQuestionData(viewModel);
+    view.get().displayQuestionData(state);
   }
 
   private void checkCurrentQuestion(boolean userAnswer) {
@@ -91,7 +89,7 @@ public class QuestionPresenter implements QuestionContract.Presenter {
       enable = false;
     }
 
-    execute(new CheckCurrentQuestion(viewModel, result, enable));
+    execute(new CheckCurrentQuestion(state, result, enable));
 
   }
 
@@ -119,7 +117,7 @@ public class QuestionPresenter implements QuestionContract.Presenter {
     //Log.e(TAG, "nextButtonClicked()");
 
     loadNextQuestion();
-    view.get().displayQuestionData(viewModel);
+    view.get().displayQuestionData(state);
   }
 
 

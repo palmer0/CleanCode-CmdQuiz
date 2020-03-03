@@ -23,6 +23,7 @@ public class QuestionRouter implements QuestionContract.Router {
   public void navigateToCheatScreen() {
     Context context = mediator.getApplicationContext();
     Intent intent = new Intent(context, CheatActivity.class);
+    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     context.startActivity(intent);
   }
 
