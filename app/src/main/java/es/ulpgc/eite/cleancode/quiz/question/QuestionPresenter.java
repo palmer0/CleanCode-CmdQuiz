@@ -108,7 +108,7 @@ public class QuestionPresenter implements QuestionContract.Presenter {
     boolean answer = model.getCurrentAnswer();
     QuestionToCheatState stateToCheat = new QuestionToCheatState(answer);
     router.passDataToCheatScreen(stateToCheat);
-    router.navigateToCheatScreen();
+    view.get().navigateToCheatScreen();
   }
 
 

@@ -19,13 +19,6 @@ public class QuestionRouter implements QuestionContract.Router {
     this.mediator = mediator;
   }
 
-  @Override
-  public void navigateToCheatScreen() {
-    Context context = mediator.getApplicationContext();
-    Intent intent = new Intent(context, CheatActivity.class);
-    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-    context.startActivity(intent);
-  }
 
   @Override
   public void passDataToCheatScreen(QuestionToCheatState state) {
