@@ -1,23 +1,35 @@
 package es.ulpgc.eite.cleancode.quiz.app;
 
-import android.app.Application;
-
 import es.ulpgc.eite.cleancode.quiz.cheat.CheatState;
 import es.ulpgc.eite.cleancode.quiz.question.QuestionState;
 
-public class AppMediator extends Application {
+public class AppMediator {
+
+  private static AppMediator instance;
+
 
   private QuestionState questionState;
   private CheatState cheatState;
   private CheatToQuestionState cheatToQuestionState;
   private QuestionToCheatState questionToCheatState;
 
-  @Override
-  public void onCreate() {
-    super.onCreate();
 
+  private AppMediator() {
     questionState = new QuestionState();
     cheatState = new CheatState();
+  }
+
+  public static void resetInstance() {
+    instance=null;
+  }
+
+
+  public static AppMediator getInstance() {
+    if(instance==null){
+      instance = new AppMediator();
+    }
+
+    return instance;
   }
 
   public CheatState getCheatState() {

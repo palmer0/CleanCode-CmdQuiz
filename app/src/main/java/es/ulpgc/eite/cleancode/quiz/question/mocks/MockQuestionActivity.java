@@ -24,6 +24,11 @@ public class MockQuestionActivity implements QuestionContract.View {
   }
 
   @Override
+  public void navigateToCheatScreen() {
+
+  }
+
+  @Override
   public void displayQuestionData(QuestionViewModel viewModel) {
     this.viewModel = viewModel;
   }

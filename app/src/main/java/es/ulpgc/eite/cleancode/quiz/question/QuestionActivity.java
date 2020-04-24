@@ -1,5 +1,6 @@
 package es.ulpgc.eite.cleancode.quiz.question;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,6 +10,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import es.ulpgc.eite.cleancode.quiz.R;
+import es.ulpgc.eite.cleancode.quiz.app.AppMediator;
+import es.ulpgc.eite.cleancode.quiz.cheat.CheatActivity;
 
 
 public class QuestionActivity
@@ -72,6 +75,10 @@ public class QuestionActivity
     cheatButton.setText(getCheatLabel());
     nextButton.setText(getNextLabel());
 
+    if(savedInstanceState==null) {
+      AppMediator.resetInstance();
+    }
+
     // do the setup
     QuestionScreen.configure(this);
 
@@ -106,6 +113,12 @@ public class QuestionActivity
 
   }
 
+
+  @Override
+  public void navigateToCheatScreen() {
+    Intent intent = new Intent(this, CheatActivity.class);
+    startActivity(intent);
+  }
 
   private String getCheatLabel() {
     return getResources().getString(R.string.cheat_label);

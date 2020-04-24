@@ -13,11 +13,6 @@ public class MockQuestionRouter implements QuestionContract.Router  {
   }
 
   @Override
-  public void navigateToCheatScreen() {
-
-  }
-
-  @Override
   public void passDataToCheatScreen(QuestionToCheatState state) {
     this.state = state;
   }
