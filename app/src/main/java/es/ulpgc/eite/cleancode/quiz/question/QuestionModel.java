@@ -4,7 +4,6 @@ public class QuestionModel implements QuestionContract.Model {
 
   public static String TAG = QuestionModel.class.getSimpleName();
 
-
   private String[] quizQuestions = {
       "Christian Bale played Batman in 'The Dark Knight Rises'?", // 1
       "The Gremlins movie was released in 1986?",  // 2
@@ -55,7 +54,6 @@ public class QuestionModel implements QuestionContract.Model {
 
   private String correctLabel, incorrectLabel;
 
-
   @Override
   public String getCorrectLabel() {
     return correctLabel;
@@ -102,6 +100,4 @@ public class QuestionModel implements QuestionContract.Model {
   public void setCurrentIndex(int index) {
     quizIndex = index;
   }
-
-
 }
