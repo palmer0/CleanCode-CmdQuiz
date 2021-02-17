@@ -18,7 +18,6 @@ public class QuestionPresenter implements QuestionContract.Presenter {
   private WeakReference<QuestionContract.View> view;
   private QuestionState state;
   private QuestionContract.Model model;
-  //private QuestionContract.Router router;
   private AppMediator mediator;
 
   public QuestionPresenter(AppMediator mediator) {
@@ -26,10 +25,6 @@ public class QuestionPresenter implements QuestionContract.Presenter {
     state = mediator.getQuestionState();
   }
 
-
-//  public QuestionPresenter(QuestionState state) {
-//    this.state = state;
-//  }
 
   @Override
   public void injectView(WeakReference<QuestionContract.View> view) {
@@ -41,10 +36,6 @@ public class QuestionPresenter implements QuestionContract.Presenter {
     this.model = model;
   }
 
-//  @Override
-//  public void injectRouter(QuestionContract.Router router) {
-//    this.router = router;
-//  }
 
   private void passDataToCheatScreen(QuestionToCheatState state) {
     mediator.setQuestionToCheatState(state);
@@ -60,7 +51,6 @@ public class QuestionPresenter implements QuestionContract.Presenter {
 
     // set passed state
     CheatToQuestionState stateFromCheat = getDataFromCheatScreen();
-    //CheatToQuestionState stateFromCheat = router.getDataFromCheatScreen();
     if(stateFromCheat != null) {
 
         if(stateFromCheat.cheated){
@@ -124,7 +114,6 @@ public class QuestionPresenter implements QuestionContract.Presenter {
   public void cheatButtonClicked() {
     boolean answer = model.getCurrentAnswer();
     QuestionToCheatState stateToCheat = new QuestionToCheatState(answer);
-    //router.passDataToCheatScreen(stateToCheat);
     passDataToCheatScreen(stateToCheat);
     view.get().navigateToCheatScreen();
   }

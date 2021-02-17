@@ -17,7 +17,6 @@ public class CheatPresenter implements CheatContract.Presenter {
 
   private WeakReference<CheatContract.View> view;
   private CheatState state;
-  //private CheatContract.Router router;
   private AppMediator mediator;
 
   public CheatPresenter(AppMediator mediator) {
@@ -25,9 +24,6 @@ public class CheatPresenter implements CheatContract.Presenter {
     state = mediator.getCheatState();
   }
 
-//  public CheatPresenter(CheatState state) {
-//    this.state = state;
-//  }
 
   @Override
   public void injectView(WeakReference<CheatContract.View> view) {
@@ -39,10 +35,6 @@ public class CheatPresenter implements CheatContract.Presenter {
     // not implemented
   }
 
-//  @Override
-//  public void injectRouter(CheatContract.Router router) {
-//    this.router = router;
-//  }
 
   private void passDataToQuestionScreen(CheatToQuestionState state) {
     mediator.setCheatToQuestionState(state);
@@ -65,11 +57,9 @@ public class CheatPresenter implements CheatContract.Presenter {
 
     // set passed state
     QuestionToCheatState stateFromQuestion = getDataFromQuestionScreen();
-    //QuestionToCheatState stateFromQuestion = router.getDataFromQuestionScreen();
     if(stateFromQuestion != null) {
 
       CheatToQuestionState toQuestionState = new CheatToQuestionState(true);
-      //router.passDataToQuestionScreen(toQuestionState);
       passDataToQuestionScreen(toQuestionState);
 
       loadCurrentAnswer(stateFromQuestion.answer);
@@ -94,7 +84,6 @@ public class CheatPresenter implements CheatContract.Presenter {
   @Override
   public void noButtonClicked() {
     CheatToQuestionState stateToCheat = new CheatToQuestionState(false);
-    //router.passDataToQuestionScreen(stateToCheat);
     passDataToQuestionScreen(stateToCheat);
     view.get().finishView();
   }

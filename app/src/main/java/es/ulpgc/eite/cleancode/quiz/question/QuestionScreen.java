@@ -17,10 +17,7 @@ public class QuestionScreen {
         new WeakReference<>((FragmentActivity) view);
 
     AppMediator mediator = AppMediator.getInstance();
-    //QuestionState state = mediator.getQuestionState();
 
-    //QuestionContract.Router router = new QuestionRouter(mediator);
-    //QuestionContract.Presenter presenter = new QuestionPresenter(state);
     QuestionContract.Presenter presenter = new QuestionPresenter(mediator);
 
     QuestionModel model = new QuestionModel();
@@ -29,7 +26,6 @@ public class QuestionScreen {
 
     presenter.injectView(new WeakReference<>(view));
     presenter.injectModel(model);
-    //presenter.injectRouter(router);
     view.injectPresenter(presenter);
 
   }
