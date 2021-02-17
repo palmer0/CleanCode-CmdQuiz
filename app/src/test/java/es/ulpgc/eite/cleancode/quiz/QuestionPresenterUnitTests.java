@@ -21,15 +21,11 @@ public class QuestionPresenterUnitTests {
     // Given
     AppMediator mediator = AppMediator.getInstance();
     QuestionContract.Presenter presenter = new QuestionPresenter(mediator);
-    //QuestionState state = new QuestionState();
-    //QuestionContract.Presenter presenter = new QuestionPresenter(state);
     MockQuestionActivity activity = new MockQuestionActivity();
     QuestionContract.View view = activity;
     QuestionContract.Model model = new QuestionModel();
-    //QuestionContract.Router router = new MockQuestionRouter();
     presenter.injectView(new WeakReference<>(view));
     presenter.injectModel(model);
-    //presenter.injectRouter(router);
     activity.injectPresenter(presenter);
 
     // When
@@ -55,15 +51,11 @@ public class QuestionPresenterUnitTests {
     // Given
     AppMediator mediator = AppMediator.getInstance();
     QuestionContract.Presenter presenter = new QuestionPresenter(mediator);
-    //QuestionState state = new QuestionState();
-    //QuestionContract.Presenter presenter = new QuestionPresenter(state);
     MockQuestionActivity activity = new MockQuestionActivity();
     QuestionContract.View view = activity;
     QuestionContract.Model model = new QuestionModel();
-    //QuestionContract.Router router = new MockQuestionRouter();
     presenter.injectView(new WeakReference<>(view));
     presenter.injectModel(model);
-    //presenter.injectRouter(router);
     activity.injectPresenter(presenter);
 
     // When
@@ -104,15 +96,11 @@ public class QuestionPresenterUnitTests {
     // Given
     AppMediator mediator = AppMediator.getInstance();
     QuestionContract.Presenter presenter = new QuestionPresenter(mediator);
-    //QuestionState state = new QuestionState();
-    //QuestionContract.Presenter presenter = new QuestionPresenter(state);
     MockQuestionActivity activity = new MockQuestionActivity();
     QuestionContract.View view = activity;
     QuestionContract.Model model = new QuestionModel();
-    //QuestionContract.Router router = new MockQuestionRouter();
     presenter.injectView(new WeakReference<>(view));
     presenter.injectModel(model);
-    //presenter.injectRouter(router);
     activity.injectPresenter(presenter);
 
     // When
@@ -152,15 +140,11 @@ public class QuestionPresenterUnitTests {
     // Given
     AppMediator mediator = AppMediator.getInstance();
     QuestionContract.Presenter presenter = new QuestionPresenter(mediator);
-    //QuestionState state = new QuestionState();
-    //QuestionContract.Presenter presenter = new QuestionPresenter(state);
     MockQuestionActivity activity = new MockQuestionActivity();
     QuestionContract.View view = activity;
     QuestionContract.Model model = new QuestionModel();
-    //QuestionContract.Router router = new MockQuestionRouter();
     presenter.injectView(new WeakReference<>(view));
     presenter.injectModel(model);
-    //presenter.injectRouter(router);
     activity.injectPresenter(presenter);
 
     // When
@@ -187,15 +171,11 @@ public class QuestionPresenterUnitTests {
     // Given
     AppMediator mediator = AppMediator.getInstance();
     QuestionContract.Presenter presenter = new QuestionPresenter(mediator);
-    //QuestionState state = new QuestionState();
-    //QuestionContract.Presenter presenter = new QuestionPresenter(state);
     MockQuestionActivity activity = new MockQuestionActivity();
     QuestionContract.View view = activity;
     QuestionContract.Model model = new QuestionModel();
-    //MockQuestionRouter router = new MockQuestionRouter();
     presenter.injectView(new WeakReference<>(view));
     presenter.injectModel(model);
-    //presenter.injectRouter(router);
     activity.injectPresenter(presenter);
 
     // When
@@ -206,7 +186,6 @@ public class QuestionPresenterUnitTests {
     String activityResult = activity.getResult();
     QuestionToCheatState presenterState =
         new QuestionToCheatState(model.getCurrentAnswer());
-    //QuestionToCheatState routerState = router.getState();
     QuestionToCheatState routerState =
         AppMediator.getInstance().getQuestionToCheatState();
 
