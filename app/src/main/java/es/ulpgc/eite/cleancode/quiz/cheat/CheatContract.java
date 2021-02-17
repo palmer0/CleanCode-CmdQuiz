@@ -2,9 +2,6 @@ package es.ulpgc.eite.cleancode.quiz.cheat;
 
 import java.lang.ref.WeakReference;
 
-import es.ulpgc.eite.cleancode.quiz.app.CheatToQuestionState;
-import es.ulpgc.eite.cleancode.quiz.app.QuestionToCheatState;
-
 
 public interface CheatContract {
 
@@ -20,7 +17,7 @@ public interface CheatContract {
   interface Presenter {
     void injectView(WeakReference<View> view);
     void injectModel(Model model);
-    void injectRouter(Router router);
+    //void injectRouter(Router router);
 
     void fetchCheatData();
     void yesButtonClicked();
@@ -31,9 +28,9 @@ public interface CheatContract {
 
   }
 
-  interface Router {
-
-    void passDataToQuestionScreen(CheatToQuestionState state);
-    QuestionToCheatState getDataFromQuestionScreen();
-  }
+//  interface Router {
+//
+//    void passDataToQuestionScreen(CheatToQuestionState state);
+//    QuestionToCheatState getDataFromQuestionScreen();
+//  }
 }

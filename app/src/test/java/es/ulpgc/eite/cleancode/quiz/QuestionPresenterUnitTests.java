@@ -4,13 +4,12 @@ import org.junit.Test;
 
 import java.lang.ref.WeakReference;
 
+import es.ulpgc.eite.cleancode.quiz.app.AppMediator;
 import es.ulpgc.eite.cleancode.quiz.app.QuestionToCheatState;
 import es.ulpgc.eite.cleancode.quiz.question.QuestionContract;
 import es.ulpgc.eite.cleancode.quiz.question.QuestionModel;
 import es.ulpgc.eite.cleancode.quiz.question.QuestionPresenter;
-import es.ulpgc.eite.cleancode.quiz.question.QuestionState;
 import es.ulpgc.eite.cleancode.quiz.question.mocks.MockQuestionActivity;
-import es.ulpgc.eite.cleancode.quiz.question.mocks.MockQuestionRouter;
 
 import static org.junit.Assert.assertEquals;
 
@@ -20,15 +19,17 @@ public class QuestionPresenterUnitTests {
   public void testNoClickAnyButton() {
 
     // Given
-    QuestionState state = new QuestionState();
-    QuestionContract.Presenter presenter = new QuestionPresenter(state);
+    AppMediator mediator = AppMediator.getInstance();
+    QuestionContract.Presenter presenter = new QuestionPresenter(mediator);
+    //QuestionState state = new QuestionState();
+    //QuestionContract.Presenter presenter = new QuestionPresenter(state);
     MockQuestionActivity activity = new MockQuestionActivity();
     QuestionContract.View view = activity;
     QuestionContract.Model model = new QuestionModel();
-    QuestionContract.Router router = new MockQuestionRouter();
+    //QuestionContract.Router router = new MockQuestionRouter();
     presenter.injectView(new WeakReference<>(view));
     presenter.injectModel(model);
-    presenter.injectRouter(router);
+    //presenter.injectRouter(router);
     activity.injectPresenter(presenter);
 
     // When
@@ -52,15 +53,17 @@ public class QuestionPresenterUnitTests {
   public void testFirstClickTrueButton() {
 
     // Given
-    QuestionState state = new QuestionState();
-    QuestionContract.Presenter presenter = new QuestionPresenter(state);
+    AppMediator mediator = AppMediator.getInstance();
+    QuestionContract.Presenter presenter = new QuestionPresenter(mediator);
+    //QuestionState state = new QuestionState();
+    //QuestionContract.Presenter presenter = new QuestionPresenter(state);
     MockQuestionActivity activity = new MockQuestionActivity();
     QuestionContract.View view = activity;
     QuestionContract.Model model = new QuestionModel();
-    QuestionContract.Router router = new MockQuestionRouter();
+    //QuestionContract.Router router = new MockQuestionRouter();
     presenter.injectView(new WeakReference<>(view));
     presenter.injectModel(model);
-    presenter.injectRouter(router);
+    //presenter.injectRouter(router);
     activity.injectPresenter(presenter);
 
     // When
@@ -99,15 +102,17 @@ public class QuestionPresenterUnitTests {
   public void testFirstClickFalseButton() {
 
     // Given
-    QuestionState state = new QuestionState();
-    QuestionContract.Presenter presenter = new QuestionPresenter(state);
+    AppMediator mediator = AppMediator.getInstance();
+    QuestionContract.Presenter presenter = new QuestionPresenter(mediator);
+    //QuestionState state = new QuestionState();
+    //QuestionContract.Presenter presenter = new QuestionPresenter(state);
     MockQuestionActivity activity = new MockQuestionActivity();
     QuestionContract.View view = activity;
     QuestionContract.Model model = new QuestionModel();
-    QuestionContract.Router router = new MockQuestionRouter();
+    //QuestionContract.Router router = new MockQuestionRouter();
     presenter.injectView(new WeakReference<>(view));
     presenter.injectModel(model);
-    presenter.injectRouter(router);
+    //presenter.injectRouter(router);
     activity.injectPresenter(presenter);
 
     // When
@@ -145,15 +150,17 @@ public class QuestionPresenterUnitTests {
   public void testFirstClickNextButton() {
 
     // Given
-    QuestionState state = new QuestionState();
-    QuestionContract.Presenter presenter = new QuestionPresenter(state);
+    AppMediator mediator = AppMediator.getInstance();
+    QuestionContract.Presenter presenter = new QuestionPresenter(mediator);
+    //QuestionState state = new QuestionState();
+    //QuestionContract.Presenter presenter = new QuestionPresenter(state);
     MockQuestionActivity activity = new MockQuestionActivity();
     QuestionContract.View view = activity;
     QuestionContract.Model model = new QuestionModel();
-    QuestionContract.Router router = new MockQuestionRouter();
+    //QuestionContract.Router router = new MockQuestionRouter();
     presenter.injectView(new WeakReference<>(view));
     presenter.injectModel(model);
-    presenter.injectRouter(router);
+    //presenter.injectRouter(router);
     activity.injectPresenter(presenter);
 
     // When
@@ -178,15 +185,17 @@ public class QuestionPresenterUnitTests {
   public void testFirstClickCheatButton() {
 
     // Given
-    QuestionState state = new QuestionState();
-    QuestionContract.Presenter presenter = new QuestionPresenter(state);
+    AppMediator mediator = AppMediator.getInstance();
+    QuestionContract.Presenter presenter = new QuestionPresenter(mediator);
+    //QuestionState state = new QuestionState();
+    //QuestionContract.Presenter presenter = new QuestionPresenter(state);
     MockQuestionActivity activity = new MockQuestionActivity();
     QuestionContract.View view = activity;
     QuestionContract.Model model = new QuestionModel();
-    MockQuestionRouter router = new MockQuestionRouter();
+    //MockQuestionRouter router = new MockQuestionRouter();
     presenter.injectView(new WeakReference<>(view));
     presenter.injectModel(model);
-    presenter.injectRouter(router);
+    //presenter.injectRouter(router);
     activity.injectPresenter(presenter);
 
     // When
@@ -197,7 +206,9 @@ public class QuestionPresenterUnitTests {
     String activityResult = activity.getResult();
     QuestionToCheatState presenterState =
         new QuestionToCheatState(model.getCurrentAnswer());
-    QuestionToCheatState routerState = router.getState();
+    //QuestionToCheatState routerState = router.getState();
+    QuestionToCheatState routerState =
+        AppMediator.getInstance().getQuestionToCheatState();
 
     // Then
     assertEquals(

@@ -5,6 +5,7 @@ import android.util.Log;
 import java.lang.ref.WeakReference;
 
 import es.ulpgc.eite.cleancode.quiz.app.AppCommand;
+import es.ulpgc.eite.cleancode.quiz.app.AppMediator;
 import es.ulpgc.eite.cleancode.quiz.app.CheatToQuestionState;
 import es.ulpgc.eite.cleancode.quiz.app.QuestionToCheatState;
 import es.ulpgc.eite.cleancode.quiz.cheat.commands.LoadCurrentAnswer;
@@ -16,11 +17,17 @@ public class CheatPresenter implements CheatContract.Presenter {
 
   private WeakReference<CheatContract.View> view;
   private CheatState state;
-  private CheatContract.Router router;
+  //private CheatContract.Router router;
+  private AppMediator mediator;
 
-  public CheatPresenter(CheatState state) {
-    this.state = state;
+  public CheatPresenter(AppMediator mediator) {
+    this.mediator = mediator;
+    state = mediator.getCheatState();
   }
+
+//  public CheatPresenter(CheatState state) {
+//    this.state = state;
+//  }
 
   @Override
   public void injectView(WeakReference<CheatContract.View> view) {
@@ -32,9 +39,17 @@ public class CheatPresenter implements CheatContract.Presenter {
     // not implemented
   }
 
-  @Override
-  public void injectRouter(CheatContract.Router router) {
-    this.router = router;
+//  @Override
+//  public void injectRouter(CheatContract.Router router) {
+//    this.router = router;
+//  }
+
+  private void passDataToQuestionScreen(CheatToQuestionState state) {
+    mediator.setCheatToQuestionState(state);
+  }
+
+  private QuestionToCheatState getDataFromQuestionScreen() {
+    return mediator.getQuestionToCheatState();
   }
 
   @Override
@@ -49,11 +64,13 @@ public class CheatPresenter implements CheatContract.Presenter {
   public void yesButtonClicked() {
 
     // set passed state
-    QuestionToCheatState stateFromQuestion = router.getDataFromQuestionScreen();
+    QuestionToCheatState stateFromQuestion = getDataFromQuestionScreen();
+    //QuestionToCheatState stateFromQuestion = router.getDataFromQuestionScreen();
     if(stateFromQuestion != null) {
 
       CheatToQuestionState toQuestionState = new CheatToQuestionState(true);
-      router.passDataToQuestionScreen(toQuestionState);
+      //router.passDataToQuestionScreen(toQuestionState);
+      passDataToQuestionScreen(toQuestionState);
 
       loadCurrentAnswer(stateFromQuestion.answer);
       view.get().displayCheatData(state);
@@ -77,7 +94,8 @@ public class CheatPresenter implements CheatContract.Presenter {
   @Override
   public void noButtonClicked() {
     CheatToQuestionState stateToCheat = new CheatToQuestionState(false);
-    router.passDataToQuestionScreen(stateToCheat);
+    //router.passDataToQuestionScreen(stateToCheat);
+    passDataToQuestionScreen(stateToCheat);
     view.get().finishView();
   }
 
